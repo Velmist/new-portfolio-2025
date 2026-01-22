@@ -342,13 +342,13 @@ export function HeroSection() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-in fade-in duration-500">
-          <div className="bg-gradient-to-br from-background to-card rounded-2xl max-w-2xl w-full p-8 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto p-8 relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-2xl">
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
 
             <button
               onClick={closeModal}
-              className="absolute top-6 right-6 text-gray-500 hover:text-gray-700 bg-background/50 backdrop-blur-sm rounded-full p-2"
+              className="absolute top-6 right-6 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full p-2 shadow-md"
             >
               <X size={24} />
             </button>

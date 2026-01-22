@@ -22,7 +22,7 @@ function ChecklistAnimation() {
       { item: 3, delay: 2700 },
     ]
 
-    const timeouts: NodeJS.Timeout[] = []
+    const timeouts: ReturnType<typeof setTimeout>[] = []
 
     steps.forEach((step, index) => {
       const timeout = setTimeout(() => {
@@ -261,112 +261,127 @@ export function GalleryFooter() {
 
   return (
     <>
-      <footer id="contact" className="bg-gradient-to-b from-muted/50 to-background py-16 relative overflow-hidden">
-        <GlowEffect position="bottom" intensity="light" color="primary" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent animate-spin-slow"></div>
-                <div className="text-3xl font-bold font-sans bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Martínez
+      <footer id="contact" className="relative bg-gradient-to-b from-background via-pink-50/20 to-background dark:via-pink-950/10 py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5" />
+        
+        <GlowEffect 
+          position="bottom" 
+          intensity="medium" 
+          color="pink" 
+          className="opacity-40"
+        />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-14">
+            <div className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 animate-spin-slow flex items-center justify-center shadow-lg shadow-pink-500/20">
+                  <div className="h-12 w-12 rounded-full bg-background flex items-center justify-center">
+                    <span className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">M</span>
+                  </div>
+                </div>
+                <div className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                  Martínez Ordaz
                 </div>
               </div>
-              <p className="text-muted-foreground font-serif mb-6">
-                Crafting digital experiences that blend creativity with technology. Let's build something
-                amazing together.
+              
+              <p className="text-muted-foreground text-lg leading-relaxed max-w-md font-serif">
+                Crafting digital experiences that blend creativity with technology. 
+                Let's build something amazing together.
               </p>
-              <div className="flex items-center space-x-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-primary" />
+              
+              <div className="flex items-center gap-5 p-5 bg-gradient-to-r from-pink-50/50 to-purple-50/50 dark:from-pink-950/20 dark:to-purple-950/20 rounded-2xl border border-pink-200/30 dark:border-pink-800/30 backdrop-blur-sm">
+                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg shadow-pink-500/30">
+                  <Phone className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="font-medium">+58-422-2306142</p>
+                  <p className="text-sm text-muted-foreground font-medium">Phone</p>
+                  <p className="text-xl font-semibold text-foreground">+58-422-2306142</p>
                 </div>
               </div>
             </div>
-
-            <div>
-              <h3 className="text-xl font-bold font-sans text-foreground mb-6">Quick Links</h3>
-              <ul className="space-y-4">
-                <li>
-                  <a
-                    href="#home"
-                    className="text-muted-foreground hover:text-primary transition-colors font-medium"
-                  >
-                    Home
-                </a>
-                </li>
-                <li>
-                  <a
-                    href="#gallery"
-                    className="text-muted-foreground hover:text-primary transition-colors font-medium"
-                  >
-                    Gallery
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    className="text-muted-foreground hover:text-primary transition-colors font-medium"
-                  >
-                    Contact
-                  </a>
-                </li>
+            
+            <div className="lg:pl-10">
+              <h3 className="text-2xl font-bold mb-10 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent font-sans">
+                Quick Links
+              </h3>
+              <ul className="space-y-6">
+                {['Home', 'Gallery', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <a
+                      href={`#${item.toLowerCase()}`}
+                      className="group flex items-center gap-4 text-lg text-muted-foreground hover:text-foreground transition-all duration-300"
+                    >
+                      <div className="h-2 w-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <span className="relative">
+                        {item}
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-purple-600 group-hover:w-full transition-all duration-300" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
-
-            <div>
-              <h3 className="text-xl font-bold font-sans text-foreground mb-6">Get In Touch</h3>
-              <p className="text-muted-foreground mb-4">
+            
+            <div className="lg:pl-10">
+              <h3 className="text-2xl font-bold mb-10 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent font-sans">
+                Get In Touch
+              </h3>
+              <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
                 Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
               </p>
               <Button
                 onClick={openContactModal}
-                className="group w-full bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-primary-foreground px-8 py-6 text-lg font-medium rounded-full transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/40"
+                className="group w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-7 text-lg font-semibold rounded-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/30 border border-pink-500/20"
               >
-                <MessageSquare className="mr-3 h-5 w-5" />
+                <MessageSquare className="mr-3 h-6 w-6" />
                 Send Me a Message
-                <Send className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <Send className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
               </Button>
             </div>
           </div>
-
-          <div className="border-t border-border mt-12 pt-8 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <MapPin className="h-5 w-5 text-muted-foreground" />
-              <p className="text-muted-foreground">Based in Venezuela, working worldwide</p>
+          
+          <div className="mt-20 pt-10 border-t-0 relative">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-11/12 h-px bg-gradient-to-r from-transparent via-pink-500/30 to-transparent" />
+            
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-10">
+              <div className="flex items-center gap-3 bg-gradient-to-r from-pink-50/30 to-purple-50/30 dark:from-pink-950/20 dark:to-purple-950/20 px-5 py-3 rounded-full">
+                <MapPin className="h-5 w-5 text-pink-500" />
+                <p className="text-muted-foreground font-medium">Based in Venezuela, working worldwide</p>
+              </div>
+              <p className="text-muted-foreground flex items-center gap-2 text-center">
+                <span className="flex items-center">
+                  Made with <Heart className="h-4 w-4 text-red-500 animate-pulse mx-1" /> 
+                  by Martínez Ordaz (SW)
+                </span>
+                <span className="hidden md:inline">•</span>
+                <span>All rights reserved. © 2025</span>
+              </p>
             </div>
-            <p className="text-muted-foreground text-sm font-serif flex items-center justify-center">
-              Made with <Heart className="h-4 w-4 mx-1 text-red-500 animate-pulse" /> by Martínez (SW). All
-              rights reserved. © 2025
-            </p>
           </div>
         </div>
       </footer>
 
       {isContactModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-in fade-in duration-500">
-          <div className="bg-gradient-to-br from-background to-card rounded-2xl max-w-lg w-full p-8 relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
-
+         <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 rounded-2xl max-w-lg w-full p-6 md:p-8 relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-2xl">
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-pink-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
             <button
               onClick={closeContactModal}
-              className="absolute top-6 right-6 text-gray-500 hover:text-gray-700 bg-background/50 backdrop-blur-sm rounded-full p-2 z-50"
+              className="absolute top-6 right-6 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full p-2 transition-colors shadow-md"
             >
               <X size={24} />
             </button>
 
             <div className="text-center mb-8">
-              <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="h-8 w-8 text-white" />
+              <div className="h-20 w-20 rounded-full bg-gradient-to-br from-pink-600 to-purple-600 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-pink-500/30">
+                <MessageSquare className="h-9 w-9 text-white" />
               </div>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 Contact Me
               </h2>
-              <p className="text-muted-foreground mt-2">
+              <p className="text-muted-foreground mt-3 max-w-sm mx-auto">
                 Send me a message directly to my email. I usually reply within 24 hours.
               </p>
             </div>
@@ -377,7 +392,7 @@ export function GalleryFooter() {
                 <div className="mt-8">
                   <Button
                     onClick={closeContactModal}
-                    className="bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/30"
+                    className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-purple-600 hover:to-pink-600 px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/30 text-lg"
                   >
                     Back to Portfolio
                   </Button>
@@ -388,18 +403,18 @@ export function GalleryFooter() {
               </div>
             ) : submitStatus === "error" ? (
               <div className="text-center py-8">
-                <div className="h-20 w-20 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
-                  <X className="h-10 w-10 text-red-600" />
+                <div className="h-20 w-20 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mx-auto mb-4">
+                  <X className="h-10 w-10 text-red-600 dark:text-red-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-red-600 mb-2">Error Sending Message</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-2">Error Sending Message</h3>
+                <p className="text-muted-foreground mb-6">
                   There was an error sending your message. Please try again or contact me directly at:
                   <br />
-                  <span className="font-medium">+58-422-2306142</span>
+                  <span className="font-medium text-foreground">+58-422-2306142</span>
                 </p>
                 <Button
                   onClick={() => setSubmitStatus("idle")}
-                  className="mt-6 bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary px-8 py-3 rounded-full"
+                  className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-purple-600 hover:to-pink-600 px-8 py-4 rounded-full"
                 >
                   Try Again
                 </Button>
@@ -415,7 +430,7 @@ export function GalleryFooter() {
                       type="text"
                       name="name"
                       placeholder="Your Name"
-                      className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full pl-12 pr-4 py-4 rounded-full border border-border bg-background/80 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -430,7 +445,7 @@ export function GalleryFooter() {
                       type="email"
                       name="email"
                       placeholder="Your Email"
-                      className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full pl-12 pr-4 py-4 rounded-full border border-border bg-background/80 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
                       value={formData.email}
                       onChange={handleChange}
                       required
@@ -445,7 +460,7 @@ export function GalleryFooter() {
                       type="text"
                       name="subject"
                       placeholder="Subject"
-                      className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full pl-12 pr-4 py-4 rounded-full border border-border bg-background/80 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
                       value={formData.subject}
                       onChange={handleChange}
                       required
@@ -457,7 +472,7 @@ export function GalleryFooter() {
                       name="message"
                       placeholder="Your Message"
                       rows={4}
-                      className="w-full px-4 py-3 rounded-2xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                      className="w-full px-4 py-4 rounded-2xl border border-border bg-background/80 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent resize-none transition-all duration-300"
                       value={formData.message}
                       onChange={handleChange}
                       required
@@ -468,22 +483,22 @@ export function GalleryFooter() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full group bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-primary-foreground py-6 text-lg font-medium rounded-full transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full group bg-gradient-to-r from-pink-600 to-purple-600 hover:from-purple-600 hover:to-pink-600 text-white py-6 text-lg font-semibold rounded-full transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/30 disabled:opacity-50 disabled:cursor-not-allowed border border-pink-500/20"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent mr-2"></div>
+                      <div className="h-6 w-6 animate-spin rounded-full border-3 border-white border-t-transparent mr-3"></div>
                       Sending...
                     </>
                   ) : (
                     <>
                       Send Message
-                      <Send className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      <Send className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
                     </>
                   )}
                 </Button>
 
-                <p className="text-xs text-muted-foreground text-center">
+                <p className="text-xs text-muted-foreground text-center pt-2">
                   By submitting this form, you agree to receive a response directly to your email.
                   No spam, guaranteed.
                 </p>

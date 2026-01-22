@@ -3,6 +3,7 @@
 import { HeroSection } from "@/components/hero-section"
 import { GalleryHeader } from "@/components/gallery-header"
 import { ImageExhibition } from "@/components/image-exhibition"
+import { ThumbnailCarousel } from "@/components/thumbnail-carousel"
 import { GalleryFooter } from "@/components/gallery-footer"
 import { SplashScreen } from "@/components/SplashScreen"
 import { useState, useEffect } from "react"
@@ -26,6 +27,7 @@ export default function Home() {
         <main>
           <HeroSection />
           <ImageExhibition />
+          <ThumbnailCarousel />
         </main>
         <GalleryFooter />
       </div>
