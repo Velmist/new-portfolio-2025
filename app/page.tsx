@@ -1,17 +1,34 @@
-import { GalleryHeader } from "@/components/gallery-header"
+"use client"
+
 import { HeroSection } from "@/components/hero-section"
+import { GalleryHeader } from "@/components/gallery-header"
 import { ImageExhibition } from "@/components/image-exhibition"
-import { ThumbnailCarousel } from "@/components/thumbnail-carousel"
 import { GalleryFooter } from "@/components/gallery-footer"
+import { SplashScreen } from "@/components/SplashScreen"
+import { useState, useEffect } from "react"
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false)
+  }
+
   return (
-    <main className="min-h-screen">
-      <GalleryHeader />
-      <HeroSection />
-      <ImageExhibition />
-      <ThumbnailCarousel />
-      <GalleryFooter />
-    </main>
+    <>
+      <SplashScreen 
+        duration={2500} 
+        onLoadingComplete={handleLoadingComplete}
+      />
+      
+      <div className={`min-h-screen bg-background transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+        <GalleryHeader />
+        <main>
+          <HeroSection />
+          <ImageExhibition />
+        </main>
+        <GalleryFooter />
+      </div>
+    </>
   )
 }
